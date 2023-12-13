@@ -48,11 +48,11 @@ namespace UI
 
             while (!ct.IsCancellationRequested)
             {
-                var clickCts = CancellationTokenSource.CreateLinkedTokenSource(ct, _cts.Token);
+                using var clickCts = CancellationTokenSource.CreateLinkedTokenSource(ct, _cts.Token);
 
                 var clickedIndex = await UniTask.WhenAny(
                     clickHandlers
-                        .Select(h => h.btn.OnClickAsync(ct)));
+                        .Select(h => h.btn.OnClickAsync(clickCts.Token)));
 
                 if (_preAsyncEvent != null)
                 {

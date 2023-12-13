@@ -17,12 +17,12 @@ namespace Samples
 
         private void Start()
         {
-            buttonA.onClick.AddListener(() => TimeRunAsync(timerLabelA).Forget());
+            buttonA.onClick.AddListener(() => TimerRunAsync(timerLabelA).Forget());
 
-            buttonB.OnClickAsAsyncEnumerable().SubscribeAwait(async _ => await TimeRunAsync(timerLabelB));
+            buttonB.OnClickAsAsyncEnumerable().SubscribeAwait(async _ => await TimerRunAsync(timerLabelB));
         }
 
-        private async UniTask TimeRunAsync(TMP_Text timerLabel)
+        private async UniTask TimerRunAsync(TMP_Text timerLabel)
         {
             DateTime endTime = DateTime.Now.AddSeconds(5);
 
